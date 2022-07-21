@@ -1,0 +1,14 @@
+{
+  "admin-api-enabled": false,
+  "snowman-api-enabled": false,
+  "allow-missing-tries": true,
+  "eth-apis": [
+    "internal-public-blockchain",
+    "internal-public-eth",
+    "internal-public-transaction-pool",
+    "public-eth",
+    "public-eth-filter",
+    "net",
+    "web3"
+  ]
+}
