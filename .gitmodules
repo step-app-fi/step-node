@@ -1,0 +1,3 @@
+[submodule "subnet-evm"]
+	path = subnet-evm
+	url = https://github.com/ava-labs/subnet-evm.git
