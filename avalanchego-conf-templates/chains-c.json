@@ -1,0 +1,24 @@
+{
+  "admin-api-enabled": true,
+  "snowman-api-enabled": true,
+  "allow-missing-tries": true,
+  "pruning-enabled": true,
+  "eth-apis": [
+    "public-eth",
+    "public-eth-filter",
+    "private-admin",
+    "public-debug",
+    "private-debug",
+    "debug-tracer",
+    "net",
+    "web3",
+    "internal-public-eth",
+    "internal-public-blockchain",
+    "internal-public-tx-pool",
+    "internal-public-transaction-pool",
+    "internal-public-account",
+    "internal-public-debug",
+    "internal-private-debug",
+    "internal-private-personal"
+  ]
+}
