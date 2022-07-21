@@ -1,30 +1,21 @@
-# The version is supplied as a build argument rather than hard-coded
-# to minimize the cost of version changes.
-ARG GO_VERSION
-
+ARG SUBNET_ID=Tf1L1dJNUUPXWGH3C6dFgzHLxeV4tS99UW2K1tW5Lb2SQreQA
+ARG SUBNET_NAME=fitfishoe
+ARG VM_ID=n6ya7fQUwBcErBWs4PwVNaH3muhiavYGu9sKjsYRXvuMPWgRF
+ARG BLOCKCHAIN_ID=2J5AZfDNqWtg9FAXGZkP4qVRUp3SD9XcQrYZz878BmZ7ybpCN5
+# Changes to the minimum golang version must also be replicated in
+# scripts/build_avalanche.sh
+# Dockerfile (here)
+# README.md
+# go.mod
 # ============= Compilation Stage ================
-# Always use the native platform to ensure fast builds
-FROM --platform=$BUILDPLATFORM golang:$GO_VERSION-bullseye AS builder
+FROM golang:1.19.6-buster AS builder
+RUN apt-get update && apt-get install -y --no-install-recommends bash=5.0-4 git=1:2.20.1-2+deb10u3 make=4.2.1-1.2 gcc=4:8.3.0-1 musl-dev=1.1.21-2 ca-certificates=20200601~deb10u2 linux-headers-amd64
+ARG SUBNET_NAME
+ARG SUBNET_ID
+ARG VM_ID
+ARG BLOCKCHAIN_ID
 
 WORKDIR /build
-
-ARG TARGETPLATFORM
-ARG BUILDPLATFORM
-
-# Configure a cross-compiler if the target platform differs from the build platform.
-#
-# build_env.sh is used to capture the environmental changes required by the build step since RUN
-# environment state is not otherwise persistent.
-RUN if [ "$TARGETPLATFORM" = "linux/arm64" ] && [ "$BUILDPLATFORM" != "linux/arm64" ]; then \
-    apt-get update && apt-get install -y gcc-aarch64-linux-gnu && \
-    echo "export CC=aarch64-linux-gnu-gcc" > ./build_env.sh \
-    ; elif [ "$TARGETPLATFORM" = "linux/amd64" ] && [ "$BUILDPLATFORM" != "linux/amd64" ]; then \
-    apt-get update && apt-get install -y gcc-x86-64-linux-gnu && \
-    echo "export CC=x86_64-linux-gnu-gcc" > ./build_env.sh \
-    ; else \
-    echo "export CC=gcc" > ./build_env.sh \
-    ; fi
-
 # Copy and download avalanche dependencies using go mod
 COPY go.mod .
 COPY go.sum .
@@ -33,31 +24,42 @@ RUN go mod download
 # Copy the code into the container
 COPY . .
 
-# Ensure pre-existing builds are not available for inclusion in the final image
-RUN [ -d ./build ] && rm -rf ./build/* || true
+# Build avalanchego
+RUN ./scripts/build.sh
 
-# Build avalanchego. The build environment is configured with build_env.sh from the step
-# enabling cross-compilation.
-ARG RACE_FLAG=""
-RUN . ./build_env.sh && \
-    echo "{CC=$CC, TARGETPLATFORM=$TARGETPLATFORM, BUILDPLATFORM=$BUILDPLATFORM}" && \
-    export GOARCH=$(echo ${TARGETPLATFORM} | cut -d / -f2) && \
-    ./scripts/build.sh ${RACE_FLAG}
+# build subnet-evm
+RUN cd subnet-evm && scripts/build.sh build/$VM_ID
 
-# Create this directory in the builder to avoid requiring anything to be executed in the
-# potentially emulated execution container.
-RUN mkdir -p /avalanchego/build
 
 # ============= Cleanup Stage ================
-# Commands executed in this stage may be emulated (i.e. very slow) if TARGETPLATFORM and
-# BUILDPLATFORM have different arches.
 FROM debian:11-slim AS execution
+ARG SUBNET_NAME
+ARG SUBNET_ID
+ARG VM_ID
+ARG BLOCKCHAIN_ID
 
-# Maintain compatibility with previous images
-COPY --from=builder /avalanchego/build /avalanchego/build
-WORKDIR /avalanchego/build
+RUN apt-get update
+RUN apt-get install gettext-base
 
 # Copy the executables into the container
-COPY --from=builder /build/build/ .
+COPY --from=builder /build/build /usr/local/lib/avalanchego
+RUN ln -s /usr/local/lib/avalanchego/avalanchego /usr/local/bin/avalanchego
+COPY --from=builder /build/subnet-evm/build/$VM_ID /usr/local/lib/avalanchego/plugins
 
-CMD [ "./avalanchego" ]
+ADD avalanchego-conf-templates templates
+RUN mkdir -p /root/.avalanchego/configs/vms/
+RUN cat templates/node.json | envsubst > /root/.avalanchego/config.json
+RUN cat templates/aliases.json | envsubst > /root/.avalanchego/configs/vms/aliases.json
+
+RUN mkdir -p /root/.avalanchego/configs/chains-relaxed/C
+RUN cp templates/chains-c.json /root/.avalanchego/configs/chains-relaxed/C/config.json
+RUN mkdir -p /root/.avalanchego/configs/chains-relaxed/$BLOCKCHAIN_ID
+RUN cp templates/chains-subnet-relaxed.json /root/.avalanchego/configs/chains-relaxed/$BLOCKCHAIN_ID/config.json
+
+RUN mkdir -p /root/.avalanchego/configs/chains-restricted/C
+RUN cp templates/chains-c.json /root/.avalanchego/configs/chains-restricted/C/config.json
+RUN mkdir -p /root/.avalanchego/configs/chains-restricted/$BLOCKCHAIN_ID
+RUN cp templates/chains-subnet-restricted.json /root/.avalanchego/configs/chains-restricted/$BLOCKCHAIN_ID/config.json
+
+EXPOSE 9650 9651
+ENTRYPOINT ["avalanchego", "--vm-aliases-file=/root/.avalanchego/configs/vms/aliases.json"]
