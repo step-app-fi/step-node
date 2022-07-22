@@ -23,6 +23,8 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
       - name: Setup Docker Buildx
         uses: docker/setup-buildx-action@v1
+      - name: Init submodules
+        run: git submodule update --init
       - name: Build image, tag and push to registry
         run: | 
           docker buildx build \
