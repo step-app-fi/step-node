@@ -34,3 +34,9 @@ jobs:
             --push \
             --cache-from=type=registry,ref=$REPO_NAME/$DOCKER_USER/$IMAGE_NAME:$(git rev-parse --abbrev-ref HEAD) \
             .
+      - name: Docker Hub Description
+        uses: peter-evans/dockerhub-description@v3
+        with:
+          username: ${{ secrets.DOCKER_USER }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          repository: ${{ secrets.DOCKER_USER }}/step-node
