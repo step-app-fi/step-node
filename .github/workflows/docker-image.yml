@@ -25,6 +25,12 @@ jobs:
         uses: docker/setup-buildx-action@v1
       - name: Init submodules
         run: git submodule update --init
+      - name: Docker Hub Description
+        uses: peter-evans/dockerhub-description@v3
+        env:
+          username: $DOCKER_USER
+          password: $DOCKER_PASSWORD
+          repository: $REPO_NAME
       - name: Build image, tag and push to registry
         run: | 
           docker buildx build \
