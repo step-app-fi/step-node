@@ -39,6 +39,8 @@ ARG SUBNET_NAME
 ARG SUBNET_ID
 ARG VM_ID
 ARG BLOCKCHAIN_ID
+ENV BLOCKCHAIN_ID_ENV=$BLOCKCHAIN_ID
+ENV FEE_RECIPIENT=$FEE_RECIPIENT
 
 RUN apt-get update
 RUN apt-get install gettext-base
@@ -63,5 +65,8 @@ RUN cp templates/chains-c.json /root/.avalanchego/configs/chains-restricted/C/co
 RUN mkdir -p /root/.avalanchego/configs/chains-restricted/$BLOCKCHAIN_ID
 RUN cp templates/chains-subnet-restricted.json /root/.avalanchego/configs/chains-restricted/$BLOCKCHAIN_ID/config.json
 
+ADD entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
 EXPOSE 9650 9651
-ENTRYPOINT ["avalanchego", "--vm-aliases-file=/root/.avalanchego/configs/vms/aliases.json"]
+ENTRYPOINT ["/bin/sh", "/entrypoint.sh"]
