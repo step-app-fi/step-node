@@ -10,5 +10,6 @@
     "public-eth-filter",
     "net",
     "web3"
-  ]
+  ],
+  "feeRecipient": "$FEE_RECIPIENT"
 }
