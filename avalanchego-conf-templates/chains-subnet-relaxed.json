@@ -20,5 +20,6 @@
     "internal-public-debug",
     "internal-private-debug",
     "internal-private-personal"
-  ]
+  ],
+  "feeRecipient": "$FEE_RECIPIENT"
 }
