@@ -65,6 +65,9 @@ RUN cp templates/chains-c.json /root/.avalanchego/configs/chains-restricted/C/co
 RUN mkdir -p /root/.avalanchego/configs/chains-restricted/$BLOCKCHAIN_ID
 RUN cp templates/chains-subnet-restricted.json /root/.avalanchego/configs/chains-restricted/$BLOCKCHAIN_ID/config.json
 
+RUN mkdir -p /root/.avalanchego/configs/subnet
+RUN cp templates/subnet.json /root/.avalanchego/configs/subnet/$SUBNET_ID.json
+
 ADD entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 

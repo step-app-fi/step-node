@@ -1,0 +1,8 @@
+{
+  "appGossipNonValidatorSize": 20,
+  "appGossipPeerSize": 20,
+  "gossipAcceptedFrontierValidatorSize": 20,
+  "gossipAcceptedFrontierNonValidatorSize": 20,
+  "gossipOnAcceptValidatorSize": 20,
+  "gossipOnAcceptNonValidatorSize": 20
+}
