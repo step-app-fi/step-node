@@ -32,6 +32,8 @@ RUN apt-get install gettext-base
 COPY --from=builder /build/build /usr/local/lib/avalanchego
 RUN ln -s /usr/local/lib/avalanchego/avalanchego /usr/local/bin/avalanchego
 
+COPY templates/chains-c.json /root/.avalanchego/configs/chains/C/config.json
+
 ADD entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
