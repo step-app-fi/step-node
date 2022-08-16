@@ -1,5 +1,5 @@
 {
-  "network-id": "fuji",
+  "network-id": "mainnet",
   "http-host": "0.0.0.0",
   "whitelisted-subnets": "$SUBNET_ID"
 }
