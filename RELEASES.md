@@ -1,14 +1,14 @@
 # Release Notes
 
-## [v1.9.0-fuji-post-upgrade](https://github.com/ava-labs/avalanchego/releases/tag/v1.9.0-fuji-post-upgrade)
+## [v1.9.0-fuji](https://github.com/ava-labs/avalanchego/releases/tag/v1.9.0-fuji)
 
 **Please note that this release is unable to run mainnet - and will display "mainnet is not supported" if attempted to run with a mainnet configuration.**
 
-This upgrade performs post-upgrade cleanup to the C-chain.
+This upgrade adds support for creating Proof-of-Stake Subnets.
 
-The changes in the upgrade go into effect at 3 PM EDT, October 4th 2022 on the Fuji testnet.
+The changes in the upgrade go into effect at 10 AM EDT, October 3rd 2022 on the Fuji testnet. After Fuji is updated and verified, a mainnet compatible release will be published.
 
-**All Fuji nodes should upgrade before 3 PM EDT, October 4th 2022.**
+**All Fuji nodes should upgrade before 10 AM EDT, October 3rd 2022.**
 
 The supported plugin version is `16`.
 
