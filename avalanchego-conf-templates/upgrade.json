@@ -1,0 +1,21 @@
+{
+  "precompileUpgrades": [
+    {
+      "feeManagerConfig": {
+        "adminAddresses": [
+          "0xe16f2e72A836F943756611e8fAf2Ed044235De5F",
+          "0xCD9300f2864D7BBC10783B4C61011A78cda26F81",
+          "0x859a096a20C97c5De2e7B8061614152aa6122469",
+          "0xC520C085e7e537c2b4A719Bb2FCc8830ef6F847b",
+          "0x81e6E3A95935B8162D43834410c9B45d042ecA0b",
+          "0xBd41c5Dc0e6AA12BFf9B540172fb6EE316cE1B28",
+          "0xdb1D523B3C60dc15Ff787c32438a56acb0FC7c03",
+          "0x70c702aBA867c8f1CF2B19f93e78446eAbaB8558",
+          "0xE8bC26fA906F9A0d5f74Fc653A67fB240537E165",
+          "0x3797E3415c4642AC6F45B1bC4dedA28577f1A90b"
+        ],
+        "blockTimestamp": 1672129800
+      }
+    }
+  ]
+}
