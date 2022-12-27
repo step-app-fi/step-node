@@ -2,7 +2,7 @@ name: Create and push to docker registry step-node image
 
 on:
   push:
-    branches: ["mainnet", "testnet", "**-mainnet", "**-testnet"]
+    branches: ["mainnet", "testnet", "**-mainnet", "**-testnet", "**-testnet-fee-manager"]
 
 env:
   DOCKER_USER: ${{secrets.DOCKER_USER}}
