@@ -1,7 +1,7 @@
 ARG SUBNET_ID=WJePx1Cu1pnRgZK2xESxvJYrXy81Yc6PvyLzafbmcrRbLw5KC
 ARG SUBNET_NAME=expand
 ARG VM_ID=mgvkshPMogUvpfHMB768H3ZxtGBDafpk56WagXHM42AHHMgdZ
-ARG BLOCKCHAIN_ID=27cbazpx2tKxeng77QcgbdWfbFY2uSMkt692R9Teq84jx1kjtr
+ARG BLOCKCHAIN_ID=guvaqv679hxAjtD3Xq9QPVCAtqHERdazVz7eb8dPJYnj36kaw
 # Changes to the minimum golang version must also be replicated in
 # scripts/build_avalanche.sh
 # scripts/local.Dockerfile
