@@ -16,6 +16,12 @@
         ],
         "blockTimestamp": 1672129800
       }
+    },
+    {
+      "feeManagerConfig": {
+        "blockTimestamp": 1673353800,
+        "disable": true
+      }
     }
   ]
 }
