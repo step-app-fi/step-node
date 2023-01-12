@@ -47,7 +47,8 @@ RUN apt-get install gettext-base
 # Copy the executables into the container
 COPY --from=builder /build/build /usr/local/lib/avalanchego
 RUN ln -s /usr/local/lib/avalanchego/avalanchego /usr/local/bin/avalanchego
-COPY --from=builder /build/subnet-evm/build/$VM_ID /usr/local/lib/avalanchego/plugins
+RUN mkdir -p /root/.avalanchego/plugins
+COPY --from=builder /build/subnet-evm/build/$VM_ID /root/.avalanchego/plugins/
 
 ADD avalanchego-conf-templates templates
 RUN mkdir -p /root/.avalanchego/configs/vms/
