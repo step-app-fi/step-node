@@ -1,5 +1,5 @@
 {
-  "network-id": "fuji",
+  "network-id": "mainnet",
   "http-host": "0.0.0.0",
   "track-subnets": "$SUBNET_ID"
 }
