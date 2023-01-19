@@ -16,6 +16,39 @@
         ],
         "blockTimestamp": 1672207200
       }
+    },
+    {
+      "feeManagerConfig": {
+        "disable": true,
+        "blockTimestamp": 1674468000
+      }
+    },
+    {
+      "feeManagerConfig": {
+        "adminAddresses": [
+          "0x0424af3d92795CEB86D09bAcfD590Fd0af4bB275",
+          "0xf7011a874c0154991230AD09801CEB636E72f82b",
+          "0x0bC7925E4F0259D1611ACb444180B3Cc55D3310b",
+          "0x8655337F2225884F4A4778CEf70CD80f7dc79681",
+          "0x3c2Bb1F2F722a990E93037DE5Cf2E7AD85Ad5110",
+          "0x5435DfBAC144D31A7Aa3D1e0C920e4ddc786E478",
+          "0x839628aFa57088AC99e5a098cecce24e3eCa4612",
+          "0xd0122DbBc20389053a27B6fB6bDA77ff42Bd5089",
+          "0xC4c15c619375D2F167a123d8d1d262Df93FEE82e",
+          "0xcba949dD000bab90eC1F8021bef72f588D4d1F6a"
+        ],
+        "blockTimestamp": 1674471600,
+        "initialFeeConfig": {
+          "gasLimit": 8000000,
+          "targetGas": 15000000,
+          "minBaseFee": 25000000000,
+          "targetBlockRate": 2,
+          "baseFeeChangeDenominator": 36,
+          "minBlockGasCost": 0,
+          "maxBlockGasCost": 1000000,
+          "blockGasCostStep": 200000
+        }
+      }
     }
   ]
 }
