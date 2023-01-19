@@ -1,7 +1,7 @@
-ARG SUBNET_ID=WJePx1Cu1pnRgZK2xESxvJYrXy81Yc6PvyLzafbmcrRbLw5KC
-ARG SUBNET_NAME=expand
-ARG VM_ID=mgvkshPMogUvpfHMB768H3ZxtGBDafpk56WagXHM42AHHMgdZ
-ARG BLOCKCHAIN_ID=guvaqv679hxAjtD3Xq9QPVCAtqHERdazVz7eb8dPJYnj36kaw
+ARG SUBNET_ID=Tf1L1dJNUUPXWGH3C6dFgzHLxeV4tS99UW2K1tW5Lb2SQreQA
+ARG SUBNET_NAME=fitfishoe
+ARG VM_ID=n6ya7fQUwBcErBWs4PwVNaH3muhiavYGu9sKjsYRXvuMPWgRF
+ARG BLOCKCHAIN_ID=2J5AZfDNqWtg9FAXGZkP4qVRUp3SD9XcQrYZz878BmZ7ybpCN5
 # Changes to the minimum golang version must also be replicated in
 # scripts/build_avalanche.sh
 # Dockerfile (here)
