@@ -1,4 +1,23 @@
 {
   "precompileUpgrades": [
+    {
+      "feeManagerConfig": {
+        "adminAddresses": [
+          "0xF15A56AF154fb241DB6167758c14E3970De018BF",
+          "0x154a04F75496Ef17170394259293DdbA2e5fc3F5"
+        ],
+        "blockTimestamp": 1675252800,
+        "initialFeeConfig": {
+          "gasLimit": 20000000,
+          "targetGas": 37500000,
+          "minBaseFee": 1000000000,
+          "targetBlockRate": 2,
+          "baseFeeChangeDenominator": 48,
+          "minBlockGasCost": 0,
+          "maxBlockGasCost": 10000000,
+          "blockGasCostStep": 500000
+        }
+      }
+    }
   ]
 }
