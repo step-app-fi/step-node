@@ -32,7 +32,7 @@ RUN cd subnet-evm && scripts/build.sh build/$VM_ID
 
 
 # ============= Cleanup Stage ================
-FROM debian:11-slim AS execution
+FROM debian:buster-slim AS execution
 ARG SUBNET_NAME
 ARG SUBNET_ID
 ARG VM_ID
