@@ -14,7 +14,6 @@ To run self-hosted node, check [avalanchego docs](https://github.com/ava-labs/av
 
 ### Running Step Node from pre-built image
 
-<<<<<<< HEAD
 - [Go](https://golang.org/doc/install) version >= 1.19.6
 - [gcc](https://gcc.gnu.org/)
 - g++
