@@ -2,6 +2,7 @@
   "admin-api-enabled": false,
   "snowman-api-enabled": false,
   "allow-missing-tries": true,
+  "skip-upgrade-check": true,
   "eth-apis": [
     "internal-blockchain",
     "internal-eth",

@@ -3,6 +3,7 @@
   "snowman-api-enabled": true,
   "allow-missing-tries": true,
   "pruning-enabled": false,
+  "skip-upgrade-check": true,
   "eth-apis": [
     "eth",
     "eth-filter",
