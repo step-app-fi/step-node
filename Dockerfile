@@ -8,7 +8,7 @@ ARG BLOCKCHAIN_ID=2jRZvKtXY5nyWTqRwFh1KMHGrCRxJoULu4r2CsayWRnjdDGbV1
 # README.md
 # go.mod
 # ============= Compilation Stage ================
-FROM golang:1.21.10-bullseye AS builder
+FROM golang:1.21.11-bullseye AS builder
 
 ARG SUBNET_NAME
 ARG SUBNET_ID
